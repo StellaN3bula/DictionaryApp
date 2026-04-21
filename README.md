@@ -2,6 +2,8 @@
 
 A simple console application to manage an English–German dictionary. Beginner project -learning by doing 💻
 ________________________________________
+🇩🇪 German version: see README_DE.md
+________________________________________
 # 🚀 Features
 
 •	📖 Display all words 
