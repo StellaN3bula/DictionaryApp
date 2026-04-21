@@ -1,0 +1,84 @@
+
+using System.Threading.Channels;
+
+public class Wörterbuch
+{
+    Dictionary<string, string> nachschlagewerk = new Dictionary<string, string>();
+
+    public void Hinzufügen(string englisch, string deutsch) //void - weil ich das Ergebnis (den Rückgabewert) nicht weiter brauche im Programm.
+    {
+
+        if (!nachschlagewerk.ContainsKey(englisch)) //Überprüft ob der Key schon existiert. Dictionaries mögen keinen doppelen Keys - dann crashen sie!
+        {
+            nachschlagewerk.Add(englisch, deutsch);
+            Console.WriteLine("Wort hinzugefügt.");
+        }
+        else
+        {
+            Console.WriteLine("Wort existiert bereits!");
+        }
+        
+    }
+
+    public void Löschen(string wort)
+    {
+        if (nachschlagewerk.Remove(wort))
+        {
+            Console.WriteLine($"Der Eintrag {wort} wurde gelöscht.");
+        }
+        else
+        {
+            Console.WriteLine("Wort nicht gefunden!");
+        }
+    }
+
+    public void Anzeigen()
+    {
+        Console.WriteLine("Englisch - Deutsch: ");
+        foreach (var wort in nachschlagewerk)
+        {
+            Console.WriteLine($"{wort.Key} - {wort.Value}");
+        }
+    }
+
+    public void Suchen(string gesuchtesWort)
+    {
+        if (nachschlagewerk.ContainsKey(gesuchtesWort) || nachschlagewerk.ContainsValue(gesuchtesWort))
+        {
+            Console.WriteLine($"Das Wort {gesuchtesWort} ist bereits vorhanden.");
+        }
+        else
+        {
+            Console.WriteLine($"Das Wort {gesuchtesWort} ist noch nicht vorhanden.");
+        }
+    }
+}
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        Wörterbuch meinWörterbuch = new Wörterbuch();
+        meinWörterbuch.Hinzufügen("dog", "Hund");
+        meinWörterbuch.Hinzufügen("cat", "Katze");
+        meinWörterbuch.Hinzufügen("cookie", "Keks");
+        Console.WriteLine("Im Wörterbuch sind folgende Wörter: ");
+        meinWörterbuch.Anzeigen();
+        Console.WriteLine();
+
+        meinWörterbuch.Hinzufügen("apple", "Apfel");
+        Console.WriteLine("Im Wörterbuch sind folgende Wörter: ");
+        meinWörterbuch.Anzeigen();
+        Console.WriteLine();
+
+        meinWörterbuch.Löschen("apple");
+        Console.WriteLine("Im Wörterbuch sind folgende Wörter: ");
+        meinWörterbuch.Anzeigen();
+        Console.WriteLine();
+
+        meinWörterbuch.Suchen("Hund");
+        Console.WriteLine();
+        meinWörterbuch.Suchen("bag");
+
+    }
+}
