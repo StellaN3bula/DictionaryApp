@@ -337,7 +337,7 @@ public class Program
                     case "e":
                         do
                         {
-
+                            //man muss die genaue Schreibweise nehmen wie beim speichern sonst findet er es nicht.
                             Console.WriteLine("Nach welchem Wort möchtest du Suchen? Bitte Wort eingeben: ");
                             string eingabeSuchen = Console.ReadLine()?.ToLower() ?? "";
                             myWörterbuch.Suchen(eingabeSuchen);
